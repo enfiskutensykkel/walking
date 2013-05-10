@@ -94,7 +94,7 @@
 	/*
 	 * Do a walking animation
 	 */
-	Man.prototype.walk = function (callback) {
+	Man.prototype.walk = function () {
 		var man = this;
 
 		if (this.distance > 0 && this.distance % (images.length * 117) == 0 && this.surprise == -1) {
@@ -121,9 +121,6 @@
 					// stop animation and notify
 					man.moving = false;
 					man.state = man.state == 'left' ? 'right' : 'left';
-					if (callback) {
-						callback();
-					}
 				}
 			}
 

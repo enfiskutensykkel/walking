@@ -3,13 +3,15 @@
 	var context = document.getElementsByTagName('canvas')[0].getContext('2d');
 	var background = new Background(context, 640, 450);
 	var man = new Man(context, background, 640/2-50, 480-200);
+	var timer = null;
+	var counter = .0;
 
 	/* Catch user input */
 	document.onkeydown = function (evt) {
 		if (evt.keyCode == 37 && man.state == 'right') {
-			man.walk(update);
+			man.walk();
 		} else if (evt.keyCode == 39 && man.state == 'left') {
-			man.walk(update);
+			man.walk();
 		} else if (evt.keyCode == 40 && man.tstate == 'in') {
 			man.pout();
 		} else if (evt.keyCode == 38 && man.tstate == 'out') {
@@ -23,7 +25,16 @@
 		context.fillStyle = 'white';
 		context.fillRect(0, 450, 640, 30);
 		context.fillStyle = 'black';
-		context.fillText('' + (man.distance)/5 + ' steps', 10, 470);
+		context.textAlign = 'left';
+		context.fillText('' + Math.floor(man.distance/5) + ' steps', 10, 470);
+
+		if (man.distance > 0)
+			++counter;
+
+		context.textAlign = 'right';
+		context.fillText('' + Math.floor(counter/10) + ' seconds', 630, 470);
+
+		timer = setTimeout(update, 100);
 	}
 
 
