@@ -80,8 +80,8 @@
 	/*
 	 * Draw the man on the canvas
 	 */
-	Man.prototype.draw = function (onlyMan) {
-		if (!onlyMan) {
+	Man.prototype.draw = function () {
+		if (this.bg) {
 			this.bg.refresh();
 		}
 
