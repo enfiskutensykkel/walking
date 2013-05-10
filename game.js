@@ -44,9 +44,9 @@
 
 
 	/* Create clouds */
-	new Cloud(background, 70, 30, .07, .2);
-	new Cloud(background, 500, 90, .1, .3);
-	new Cloud(background, 200, 120, .2, 1);
+	new Cloud(background, 70, 30, .07, .02);
+	new Cloud(background, 500, 90, .1, .003);
+	new Cloud(background, 200, 120, .2, .1);
 
 	/* Create trees */
 	new Tree(background, 100, 185, 2, 2);
