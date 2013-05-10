@@ -82,7 +82,11 @@
 		this.ctx.drawImage(faces[this.tcurrent], this.x, this.y);
 
 		if (this.surprise > -1) {
-			this.ctx.drawImage(surprises[this.surprise], this.x + images[this.current].width - images[this.current].width / 4, this.y - 2*(surprises[this.surprise].height/3));
+			this.ctx.drawImage(
+				surprises[this.surprise], 
+				this.x + images[this.current].width - images[this.current].width / 4, 
+				this.y - 2*(surprises[this.surprise].height/3)
+			);
 		}
 	};
 
