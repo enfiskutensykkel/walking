@@ -63,7 +63,8 @@
 	man.draw();
 	context.font = '30px Helvetica';
 	context.fillStyle = 'purple';
-	context.fillText("Press left and right arrow to walk", 12, 120)
+	context.textAlign = 'center';
+	context.fillText("Press left and right arrow to walk", 640/2, 120)
 
 	update();
 })();
