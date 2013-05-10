@@ -3,7 +3,7 @@
 	/* Load all the animation images */
 	var images = [];
 	var faces = [];
-	var surprises = [];
+	var messages = [];
 
 	for (var i = 0; i < 10; ++i) {
 		images[i] = new Image();
@@ -25,8 +25,8 @@
 	}
 
 	for (var i = 0; i <= 6; ++i) {
-		surprises[i] = new Image();
-		surprises[i].src = 'img/message' + i + '.png';
+		messages[i] = new Image();
+		messages[i].src = 'img/message' + i + '.png';
 	}
 
 
@@ -47,10 +47,13 @@
 		this.tstate = 'in';
 		this.tcurrent = 0;
 
-		this.surprise = -1;
+		this.message = -1;
 	}
 
 
+	/*
+	 * Make the man pout
+	 */
 	Man.prototype.pout = function () {
 		if (!this.tmoving) {
 			this.tmoving = true;
@@ -73,38 +76,49 @@
 		}
 	};
 
+
 	/*
 	 * Draw the man on the canvas
 	 */
-	Man.prototype.draw = function () {
-		this.bg.refresh();
+	Man.prototype.draw = function (onlyMan) {
+		if (!onlyMan) {
+			this.bg.refresh();
+		}
+
 		this.ctx.drawImage(images[this.current], this.x, this.y);
 		this.ctx.drawImage(faces[this.tcurrent], this.x, this.y);
 
-		if (this.surprise > -1) {
+		if (this.message > -1) {
 			this.ctx.drawImage(
-				surprises[this.surprise], 
+				messages[this.message], 
 				this.x + images[this.current].width - images[this.current].width / 4, 
-				this.y - 2*(surprises[this.surprise].height/3)
+				this.y - 2*(messages[this.message].height/3)
 			);
 		}
 	};
 
 
 	/*
-	 * Do a walking animation
+	 * Show a speech bubble
+	 */
+	Man.prototype.speak = function () {
+		if (this.message == -1) {
+			this.message = Math.floor(Math.random()*10000) % messages.length;
+			var man = this;
+			setTimeout(function () { man.message = -1; man.draw(); }, 2000);
+		}
+	};
+
+
+	/*
+	 * Make the man walk
 	 */
 	Man.prototype.walk = function () {
-		var man = this;
-
-		if (this.distance > 0 && this.distance % (images.length * 117) == 0 && this.surprise == -1) {
-			this.surprise = Math.floor(Math.random()*10000) % surprises.length;
-			setTimeout(function () { man.surprise = -1; man.draw(); }, 2000);
-		}
-
 		if (!this.moving) {
 			this.moving = true;
 			this.draw();
+
+			var man = this;
 
 			/* Animate a walk movement */
 			function walker() {

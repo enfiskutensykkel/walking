@@ -28,8 +28,13 @@
 		context.textAlign = 'left';
 		context.fillText('' + Math.floor(man.distance/5) + ' steps', 10, 470);
 
-		if (man.distance > 0)
+		if (man.distance > 0) {
 			++counter;
+
+			if (counter % 2000 == 0) {
+				man.speak();
+			}
+		}
 
 		context.textAlign = 'right';
 		context.fillText('' + Math.floor((counter/10)/60) + ' min ' + Math.floor((counter/10) % 60) + ' sec', 630, 470);
