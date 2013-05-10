@@ -32,7 +32,7 @@
 			++counter;
 
 		context.textAlign = 'right';
-		context.fillText('' + Math.floor(counter/10) + ' seconds', 630, 470);
+		context.fillText('' + Math.floor((counter/10)/60) + ' min ' + Math.floor((counter/10) % 60) + ' sec', 630, 470);
 
 		timer = setTimeout(update, 100);
 	}
