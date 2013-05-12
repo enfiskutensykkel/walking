@@ -1,12 +1,17 @@
 (function main() {
 	/* Set up game */
-	var context = document.getElementsByTagName('canvas')[0].getContext('2d');
+	var canvas = document.getElementsByTagName('canvas')[0];
+	var context = canvas.getContext('2d');
 	var background = new Background(context, 640, 450);
 	var man = new Man(context, background, 640/2-50, 480-200);
 	var timer = null;
 	var counter = .0;
 
 	/* Catch user input */
+	canvas.onmousedown = function (evt) {
+		man.walk();
+	};
+
 	document.onkeydown = function (evt) {
 		if (evt.keyCode == 37 && man.state == 'right') {
 			man.walk();
