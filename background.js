@@ -55,15 +55,15 @@
 	Background.prototype.refresh = function () {
 		var oldstyle = this.ctx.fillStyle;
 
-		/* Draw sky */
+		// Draw sky 
 		this.ctx.fillStyle = 'lightblue';
 		this.ctx.fillRect(0, 0, this.width, this.height);
 
-		/* Draw ground */
+		// Draw ground
 		this.ctx.fillStyle = 'brown';
 		this.ctx.fillRect(0, this.height - 200, this.width, 200);
 
-		/* Draw background objects */
+		// Draw background objects
 		for (var i = 0; i < this.objects.length; ++i) {
 			draw(this, this.objects[i]);
 		}
