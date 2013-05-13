@@ -61,7 +61,12 @@
 
 		// Draw ground
 		this.ctx.fillStyle = 'brown';
-		this.ctx.fillRect(0, this.height - 200, this.width, 200);
+		this.ctx.fillRect(
+			0, 
+			this.height - (this.height/2 - (this.height/2 % 100)), 
+			this.width, 
+			this.height / 2 - (this.height/2 % 100)
+		);
 
 		// Draw background objects
 		for (var i = 0; i < this.objects.length; ++i) {
