@@ -9,7 +9,14 @@
 
 	/* Catch user input */
 	canvas.onmousedown = function (evt) {
-		man.walk();
+		evt.preventDefault();
+		evt.stopPropagation();
+
+		if (evt.x < 640/2 && man.state == 'right') {
+			man.walk();
+		} else if (evt.x > 640/2 && man.state == 'left') {
+			man.walk();
+		}
 	};
 
 	document.onkeydown = function (evt) {
