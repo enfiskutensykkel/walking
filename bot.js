@@ -1,0 +1,1 @@
+var a=document.createEvent("Event"),b=document.createEvent("Event"),c=!0;a.initEvent("keydown");b.initEvent("keydown");b.keyCode=37;a.keyCode=39;window.setInterval(function(){c=!c;document.dispatchEvent(c?a:b)},1)
